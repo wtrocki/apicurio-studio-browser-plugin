@@ -23,7 +23,6 @@ import {AppComponent} from './app.component';
 import {BsDropdownModule, ModalModule} from 'ngx-bootstrap';
 import {FormsModule} from '@angular/forms';
 import {WindowRef} from './services/window-ref.service';
-import {EmptyStateComponent} from "./empty/empty-state.component";
 import {EditorComponent} from "./editor/editor.component";
 import {DownloaderService} from "./services/downloader.service";
 import {HttpClientModule} from "@angular/common/http";
@@ -48,7 +47,6 @@ import {environment} from '../environments/environment';
     ],
     declarations: [
         AppComponent, 
-        EmptyStateComponent,
         EditorComponent,
         ConfigureValidationComponent
     ],
@@ -58,6 +56,7 @@ import {environment} from '../environments/environment';
         ConfigService,
         DownloaderService, 
         StorageService,
+        HttpClientModule,
         ApiDefinitionFileService
     ],
     bootstrap: [AppComponent]

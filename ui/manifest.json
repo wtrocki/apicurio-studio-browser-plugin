@@ -1,0 +1,14 @@
+{
+  "name": "Apicurio",
+  "action": {},
+  "manifest_version": 3,
+  "version": "0.1",
+  "description": "Loads Apicurio editor when a user clicks on the 'Apicurio' button",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}

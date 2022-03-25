@@ -21,11 +21,12 @@ import {WindowRef} from './services/window-ref.service';
 import {AppInfoService} from "./services/app-info.service";
 import {environment} from '../environments/environment';
 import { CrossNavApp, getAvailableApps, getSolutionExplorerServer } from '@rh-uxd/integration-core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+    styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
 
@@ -37,7 +38,7 @@ export class AppComponent implements OnInit {
     apps: CrossNavApp[] = [];
     apiDef: ApiDefinition = null;
 
-    constructor(private winRef: WindowRef, public appInfo: AppInfoService) {
+    constructor(private winRef: WindowRef, public appInfo: AppInfoService, private http: HttpClient) {
     }
 
     public ngOnInit () {
@@ -55,6 +56,13 @@ export class AppComponent implements OnInit {
                 this.showLogo = true;
               }
           });
+          const queryString = window.location.search;
+          const urlParams = new URLSearchParams(queryString);
+            const api = urlParams.get('api');
+            console.log("Loading editor with api: " + api);
+            this.http.get(api).toPromise().then(content => {
+                this.openEditor(content);
+            })
     }
 
     public navigate(url: string): void {
